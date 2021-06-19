@@ -12,7 +12,7 @@ function Navbar() {
                             <p className="nav-link" >Home</p>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="https://docs.openaq.org/v1/latest" >API link</a>
+                            <a className="nav-link" href="https://docs.openaq.org/v2/locations" >API link</a>
                         </li>
                         
                     </ul>

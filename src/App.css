@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: o;
+}
 .App {
   text-align: center;
 }
@@ -15,8 +19,14 @@
 }
 .home-container{
   position: relative;
-  top:60px;
+  top:90px;
+  text-align: center;
 }
 .home-container p{
   color: rgb(167, 173, 166);
+}
+.city-details{
+  position: relative;
+  top:160px;
+  text-align: center;
 }

@@ -1,3 +1,97 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Bar } from 'react-chartjs-2';
+
+
+function Home() {
+    useEffect(() => {
+        fetchItems()
+      }, []);
+      const [state, setstate] = useState([]);
+      const [param, setparam] = useState("");
+      const [Date, setDate] = useState("");
+      const [value, setValue] = useState(0);
+      // const [paramValue, setParamValue] = useState([]);
+    
+      const fetchItems = async() =>{
+        axios.get('https://docs.openaq.org/v2/measurements')
+        .then( (response) => {
+          // handle success
+          setstate(response.data.results);
+        })
+        .catch( (error) => {
+          // handle error
+          alert("Invalid network Access")
+          console.log(error);
+        })
+      }
+      // button onclick
+      const openData = () => {
+      
+          state.forEach((item) => {
+            setparam(item.parameter)
+            setDate(item.date.local)
+            setValue(item.value)
+          })
+        
+      }
+
+    return (
+        <div className="home-container">
+          <div className="selector">
+            <select className="form-select w-5" >
+              <option select="true" >Select a City</option>
+              {state.map((obj, index)=> {
+                return <option key={index} value={obj.location}>{obj.location}</option>
+              }
+              )}
+            </select>
+          </div>
+          <div className="button">
+          <button type="button" onClick={openData} className="btn btn-outline-success">Polluted data</button>
+          <p >hint: double click button / refresh before changing city</p>
+          </div>
+          <div className="datas">
+                <Bar 
+                data={{
+                  labels: Date,
+                  datasets: [{
+                      label: param,
+                      data: value,
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                  }]                 
+                }
+    
+                } />
+          </div>
+          
+        </div>
+    )
+}
+
+export default Home
+setChartData({
+            labels: xValues,
+            datasets: [
+              {
+                label: "particles",
+                data: yValues,
+                backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+                borderWidth: 4
+              }
+            ]
+          });
+
+        <div className="graph">
+                <Bar data={chartData}/>
+            </div>

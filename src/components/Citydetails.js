@@ -23,7 +23,7 @@ function Citydetails({ match }) {
         let parameterUsed = [];
         let valueUsed = [];
         for (const dataObj of values) {
-            parameterUsed.push(dataObj.parameter);
+            parameterUsed.push(dataObj.lastUpdated);
             valueUsed.push(dataObj.value);
           }
           setChartData({
@@ -46,9 +46,9 @@ function Citydetails({ match }) {
     return (
         <div className="city-details">
             <h1>{match.params.city}</h1>
+            <h2>Pollution Contents</h2>
             <div>{values.map((obj, id)=>{
                 return<div>
-                    <h2>Particle</h2>
                     <h3 key={id}>{obj.parameter}: {obj.value} {obj.unit}</h3>
                 </div>          
             })}</div>
@@ -62,7 +62,7 @@ function Citydetails({ match }) {
             </select>
             <button className="btn btn-success m-4" onClick={chart}>Graphical data</button>  
             <div className="graph">
-                <Bar data={chartData}/>
+                <Bar data={chartData} />
             </div>
             </div>
         </div>

@@ -20,7 +20,9 @@ function Home() {
 
     return (
         <div className="home-container">
+          <h2>List of Cities</h2>
           <p className="text-muted">hint: refresh to view next data</p>
+
           <div className="datas">
             {state.map((obj,index)=>{
               return <h3 key={index}> <Link to={`/citydetail/${obj.city}`}>{obj.city}</Link></h3>
